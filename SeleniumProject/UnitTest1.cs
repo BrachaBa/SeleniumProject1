@@ -31,6 +31,35 @@ namespace SeleniumProject
             googleHomePage = new GoogleHomePage(driver);
             googleResultsPage = new GoogleResultsPage(driver);
         }
+
+        public void ClickByXPath(string XPath)
+        {
+            IWebElement elementXPath = driver.FindElement(By.XPath(XPath));
+            elementXPath.Click();
+        }
+
+        public void ClickByID(string ID)
+        {
+            IWebElement elementID = driver.FindElement(By.Id(ID));
+            elementID.Click();
+        }
+
+        public void ClickByClass(string Class)
+        {
+            IWebElement elementClass = driver.FindElement(By.ClassName(Class));
+            elementClass.Click();
+        }
+
+        [Test]
+        public void test1()
+        {
+            driver.Navigate().GoToUrl("https://demoqa.com/alerts");
+            ClickByID("timerAlertButton");
+
+            //WebDriverWait wait=new WebDriverWait(driver,TimeSpan.FromSeconds(10));
+            //wait.Until(ExpectedConditions.IsPresent)
+        }
+
         [Test]
         public void TestHandleAlert()
         {
@@ -152,6 +181,9 @@ namespace SeleniumProject
             // firefoxDriver.SwitchTo().Window(firefoxTabs[0]);
             //firefoxHomePage.Search("MacBook");
         }
+
+       
+
 
         [OneTimeTearDown]
         public void TearDown()
